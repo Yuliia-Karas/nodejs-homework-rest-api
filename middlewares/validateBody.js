@@ -8,9 +8,8 @@ const validateBody = schema => {
         }
         next()
     }
-    console.log(func);
-    return func;
 
+    return func;
     
 }
 module.exports = validateBody;
