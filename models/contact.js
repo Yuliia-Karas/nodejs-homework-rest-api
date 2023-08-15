@@ -1,7 +1,7 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 const Joi = require("joi");
 
-const { handleMongooseError } = require('../helpers');
+const { handleMongooseError } = require("../helpers");
 const phoneReg = /^\(\d{3}\) \d{3}-\d{4}$/;
 const emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -27,24 +27,27 @@ const contactSchema = new Schema(
   { versionKey: false, timestamps: true }
 );
 
-contactSchema.post('save', handleMongooseError);
-
-
+contactSchema.post("save", handleMongooseError);
 
 const addSchema = Joi.object({
   name: Joi.string().required(),
   email: Joi.string().pattern(emailReg).required(),
-    phone: Joi.string().pattern(phoneReg).required(),
-  favorite:Joi.boolean(),
+  phone: Joi.string().pattern(phoneReg).required(),
+  favorite: Joi.boolean(),
 });
+
+const updateFavoriteSchema = Joi.object({
+    favorite:Joi.boolean().required(),
+})
 
 const schemas = {
     addSchema,
-}
+    updateFavoriteSchema
+};
 
-const Contact = model("contacts", contactSchema);
+const Contact = model("contact", contactSchema);
 
 module.exports = {
-    Contact,
-    schemas,
+  Contact,
+  schemas,
 };
