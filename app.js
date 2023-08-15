@@ -24,4 +24,8 @@ app.use((err, req, res, next) => {
   res.status(status).json({ message });
 });
 
+app.use((err, req, res, next) => {
+  res.status(res.statusCode).json({ message: err.message, stack: err.stack });
+});
+
 module.exports = app;
