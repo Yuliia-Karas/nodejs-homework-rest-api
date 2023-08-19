@@ -8,8 +8,8 @@ const emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const usersSchema = new Schema(
   {
     password: {
-          type: String,
-        minlength:6,
+      type: String,
+      minlength: 6,
       required: [true, "Set password for user"],
     },
     email: {
@@ -31,9 +31,9 @@ const usersSchema = new Schema(
 usersSchema.post("save", handleMongooseError);
 
 const registerSchema = Joi.object({
-    password: Joi.string().min(6).required(),
-    email:Joi.string().pattern(emailReg).required(),
-})
+  password: Joi.string().min(6).required(),
+  email: Joi.string().pattern(emailReg).required(),
+});
 
 const loginSchema = Joi.object({
   password: Joi.string().min(6).required(),
@@ -41,13 +41,14 @@ const loginSchema = Joi.object({
 });
 
 const schemas = {
-    registerSchema,
-    loginSchema,
-}
+  registerSchema,
+  loginSchema,
+};
 
 const User = model("user", usersSchema);
+console.log(User);
 
-model.exports = {
-  schemas,
+module.exports = {
   User,
+  schemas,
 };
