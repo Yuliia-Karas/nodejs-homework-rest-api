@@ -19,17 +19,6 @@ const getAll = async (req, res) => {
   res.json(result);
 };
 
-// const filter = { owner };
-//   if (favorite === 'true') {
-//     filter.favorite = true;
-//   }
-
-//   const result = await Contact.find(filter, "-createdAt -updatedAt", { skip, limit })
-//     .populate("owner", "email");
-
-//   res.json(result);
-// };
-
 const getById = async (req, res) => {
   const { id } = req.params;
   const result = await Contact.findById(id);
