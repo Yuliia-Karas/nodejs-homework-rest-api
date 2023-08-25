@@ -24,8 +24,6 @@ router.patch(
   ctrl.updateFavorite
 );
 
-
-
 router.delete("/:id", authentificate, isValidId, ctrl.deleteById);
 
 
